@@ -20,6 +20,9 @@ const items = [
   {
     name: 'item six',
   },
+  {
+    name: 'item seven',
+  },
 ];
 
 export default function TabOneScreen() {
