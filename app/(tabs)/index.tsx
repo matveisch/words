@@ -1,19 +1,53 @@
-import { StyleSheet } from "react-native";
+import { ScrollView, StyleSheet } from 'react-native';
+import { Drawer, Text, View, Colors } from 'react-native-ui-lib';
 
-import EditScreenInfo from "../../components/EditScreenInfo";
-import { View } from "../../components/Themed";
-import { Text } from "react-native-ui-lib";
+const items = [
+  {
+    name: 'item one',
+  },
+  {
+    name: 'item two',
+  },
+  {
+    name: 'item three',
+  },
+  {
+    name: 'item four',
+  },
+  {
+    name: 'item five',
+  },
+  {
+    name: 'item six',
+  },
+];
 
 export default function TabOneScreen() {
   return (
     <View style={styles.container}>
       <Text text30>Your Sets</Text>
-      <View
-        style={styles.separator}
-        lightColor="#eee"
-        darkColor="rgba(255,255,255,0.1)"
-      />
-      <EditScreenInfo path="app/(tabs)/index.tsx" />
+      <ScrollView>
+        {items.map((item) => (
+          <Drawer
+            rightItems={[
+              {
+                text: 'Read',
+                background: Colors.blue30,
+                onPress: () => console.log('read pressed'),
+              },
+            ]}
+            leftItem={{
+              text: 'Delete',
+              background: Colors.red30,
+              onPress: () => console.log('delete pressed'),
+            }}
+          >
+            <View centerV padding-s4 bg-white style={{ height: 60 }}>
+              <Text text70>{item.name}</Text>
+            </View>
+          </Drawer>
+        ))}
+      </ScrollView>
     </View>
   );
 }
@@ -21,14 +55,15 @@ export default function TabOneScreen() {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
+    backgroundColor: 'white',
   },
   title: {
     fontSize: 20,
-    fontWeight: "bold",
+    fontWeight: 'bold',
   },
   separator: {
     marginVertical: 30,
     height: 1,
-    width: "80%",
+    width: '80%',
   },
 });
